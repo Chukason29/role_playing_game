@@ -32,10 +32,15 @@ const buyGold = () => {
     console.log("buyGold");
 }
 const buyHealth = () => {
-    gold -= 10
-    health += 10
-    document.querySelector("#goldText").innerText = gold
-    document.querySelector("#healthText").innerText = health
+    if (gold >= 10){
+        gold -= 10
+        health += 10
+        document.querySelector("#goldText").innerText = gold
+        document.querySelector("#healthText").innerText = health
+    }else{
+        text.innerText = "You dont have enough money to buy"
+    }
+    
 }
 
 const fightSlime = () => {
