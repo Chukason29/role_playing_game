@@ -32,7 +32,10 @@ const buyGold = () => {
     console.log("buyGold");
 }
 const buyHealth = () => {
-    console.log("buyHealth");
+    gold -= 10
+    health += 10
+    document.querySelector("#goldText").innerText = gold
+    document.querySelector("#healthText").innerText = health
 }
 
 const fightSlime = () => {
