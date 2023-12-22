@@ -19,12 +19,7 @@ const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth")
 
 const goToStore = () => {
-    button1.innerText = "buy 10 gold"
-    button2.innerText = "buy 5 Weapon"
-    button3.innerText = "go back home"
-    button1.onclick = buyGold
-    button2.onclick = buyHealth
-    button3.onclick = goHome
+    
 }
 const goToCave = () => {
     console.log("go to cave");
@@ -53,7 +48,15 @@ const update = (location) => {
 const locations = [
     {
         name: "town square",
-        "button text" : []
+        buttonText : ["Go to store", "Go to cave", "Fight dragon"],
+        buttonFunctions: [goToStore, goToCave, goFight],
+        text: "You enter the store."
+    },
+    {
+        name: "store",
+        buttonText : ["buy 10 gold", "buy 5 Weapon", "go back home"],
+        buttonFunctions: [buyGold, buyHealth, goHome],
+        text: "buy all you want"
     }
 ]
 button1.onclick = goToStore
