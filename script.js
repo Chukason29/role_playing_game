@@ -18,8 +18,9 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth")
 
+
 const goToStore = () => {
-    
+    update(locations[1])
 }
 const goToCave = () => {
     console.log("go to cave");
@@ -34,31 +35,35 @@ const buyHealth = () => {
     console.log("buyHealth");
 }
 const goHome= () => {
-    button1.innerText = "Go to store"
-    button2.innerText = "Go to cave"
-    button3.innerText = "Fight dragon"
-    button1.onclick = goToStore
-    button2.onclick = goToCave
-    button3.onclick = goFight
-    text.innerText = "You enter the store.";
+    update(locations[0])
 }
 const update = (location) => {
+    //destructuring objects
+    const {name, buttonText, buttonFunction, text} = location;
 
+    button1.innerText = buttonText[0]
+    button2.innerText = buttonText[1]
+    button3.innerText = buttonText[2]
+    button1.onclick = buttonFunction[0]
+    button2.onclick = buttonFunction[1]
+    button3.onclick = buttonFunction[2]
+    text.innerText = text
 }
 const locations = [
     {
         name: "town square",
         buttonText : ["Go to store", "Go to cave", "Fight dragon"],
-        buttonFunctions: [goToStore, goToCave, goFight],
+        buttonFunction: [goToStore, goToCave, goFight],
         text: "You enter the store."
     },
     {
         name: "store",
         buttonText : ["buy 10 gold", "buy 5 Weapon", "go back home"],
-        buttonFunctions: [buyGold, buyHealth, goHome],
+        buttonFunction: [buyGold, buyHealth, goHome],
         text: "buy all you want"
     }
 ]
+
 button1.onclick = goToStore
 button2.onclick = goToCave
 button3.onclick = goFight
