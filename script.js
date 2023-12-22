@@ -39,7 +39,7 @@ const goHome= () => {
 }
 const update = (location) => {
     //destructuring objects
-    const {name, buttonText, buttonFunction, text} = location;
+    const {name, buttonText, buttonFunction, text: finalText} = location;
 
     button1.innerText = buttonText[0]
     button2.innerText = buttonText[1]
@@ -47,7 +47,7 @@ const update = (location) => {
     button1.onclick = buttonFunction[0]
     button2.onclick = buttonFunction[1]
     button3.onclick = buttonFunction[2]
-    text.innerText = text
+    text.innerText = finalText
 }
 const locations = [
     {
