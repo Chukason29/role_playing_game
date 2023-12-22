@@ -34,6 +34,13 @@ const buyGold = () => {
 const buyHealth = () => {
     console.log("buyHealth");
 }
+
+const fightSlime = () => {
+    console.log("fight Slime");
+}
+const fightBeast = () => {
+    console.log("fight Beast");
+}
 const goHome= () => {
     update(locations[0])
 }
