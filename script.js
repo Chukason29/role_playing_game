@@ -23,7 +23,7 @@ const goToStore = () => {
     update(locations[1])
 }
 const goToCave = () => {
-    console.log("go to cave");
+    update(locations[2])
 }
 const goFight = () => {
     console.log("go to fight");
@@ -61,6 +61,12 @@ const locations = [
         buttonText : ["buy 10 gold", "buy 5 Weapon", "go back home"],
         buttonFunction: [buyGold, buyHealth, goHome],
         text: "buy all you want"
+    },
+    {
+        name: "cave",
+        buttonText : ["fight slime", "fight beast", "go back home"],
+        buttonFunction: [fightSlime, fightBeast, goHome],
+        text: "The cave is dangerous"
     }
 ]
 
