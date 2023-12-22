@@ -18,13 +18,46 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth")
 
-button1.onclick = goStore;
-button2.onclick = goCave;
-button3.onclick = fightDragon;
+const goToStore = () => {
+    button1.innerText = "buy 10 gold"
+    button2.innerText = "buy 5 Weapon"
+    button3.innerText = "go back home"
+    button1.onclick = buyGold
+    button2.onclick = buyHealth
+    button3.onclick = goHome
+}
+const goToCave = () => {
+    console.log("go to cave");
+}
+const goFight = () => {
+    console.log("go to fight");
+}
+const buyGold = () => {
+    console.log("buyGold");
+}
+const buyHealth = () => {
+    console.log("buyHealth");
+}
+const goHome= () => {
+    button1.innerText = "Go to store"
+    button2.innerText = "Go to cave"
+    button3.innerText = "Fight dragon"
+    button1.onclick = goToStore
+    button2.onclick = goToCave
+    button3.onclick = goFight
+    text.innerText = "You enter the store.";
+}
+const update = (location) => {
 
-const goStore = () =>{
-    console.log("Going to store");
 }
-const goCave = () =>{
-    console.log("Going to cave");
-}
+const locations = [
+    {
+        name: "town square",
+        "button text" : []
+    }
+]
+button1.onclick = goToStore
+button2.onclick = goToCave
+button3.onclick = goFight
+
+
