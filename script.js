@@ -18,7 +18,36 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth")
 
-
+function weaponFunc(){
+    if (currentWeapon < weapons.length - 1) {
+        if (gold >= 30) {
+          gold -= 30;
+          currentWeapon++;
+          goldText.innerText = gold;
+          let newWeapon = weapons[currentWeapon].name;
+          text.innerText = "You now have a " + newWeapon + ".";
+          inventory.push(newWeapon);
+          text.innerText += " In your inventory you have: " + inventory;
+        } else {
+          text.innerText = "You do not have enough gold to buy a weapon.";
+        }
+      } else {
+        text.innerText = "You already have the most powerful weapon!";
+        button2.innerText = "Sell weapon for 15 gold";
+        button2.onclick = sellWeapon;
+      }
+}
+const sellWeapon = () => {
+    if (inventory.length > 1) {
+        gold += 15;
+        goldText.innerText = gold;
+        let currentWeapon = inventory.shift();
+        text.innerText = "You sold a " + currentWeapon + ".";
+        text.innerText += " In your inventory you have: " + inventory;
+      }else{
+        text.innerText = "Don't sell your only weapon!"
+      }
+}
 const goToStore = () => {
     update(locations[1])
 }
@@ -28,8 +57,15 @@ const goToCave = () => {
 const goFight = () => {
     console.log("go to fight");
 }
-const buyGold = () => {
-    console.log("buyGold");
+const buyWeapon = () => {
+    if(gold >= 30){
+        gold -= 30
+        currentWeapon = 1
+        let newWeapon = weapons[currentWeapon].name;
+        goldText.innerText = gold
+        text.innerText = `You now have a ${newWeapon}.`
+
+    }
 }
 const buyHealth = () => {
     if (gold >= 10){
@@ -73,8 +109,8 @@ const locations = [
     },
     {
         name: "store",
-        buttonText : ["buy 10 gold", "buy 5 Weapon", "go back home"],
-        buttonFunction: [buyGold, buyHealth, goHome],
+        buttonText : ["buy health (10 gold)", "buy Weapon (30 gold)", "go back home"],
+        buttonFunction: [buyHealth, buyWeapon, goHome],
         text: "buy all you want"
     },
     {
@@ -84,6 +120,12 @@ const locations = [
         text: "The cave is dangerous"
     }
 ]
+const weapons = [
+    { name: 'stick', power: 5 },
+    { name: 'dagger', power: 30 },
+    { name: 'claw hammer', power: 50 },
+    { name: 'sword', power: 100 }
+];
 
 button1.onclick = goToStore
 button2.onclick = goToCave
