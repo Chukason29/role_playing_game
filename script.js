@@ -69,7 +69,11 @@ const sellWeapon = () => {
       }
 }
 const goFight = () => {
-    console.log("go to fight");
+    update(locations[3]);
+    monsterHealth = monsters[fighting].health;
+    monsterStats.style.display = "block";
+    monsterName.innerText = monsters[fighting].name;
+    monsterHealthText.innerText = monsterHealth;
 }
 const fightSlime = () => {
     fighting = 0
@@ -84,10 +88,30 @@ const fightDragon = () => {
     goFight()
 }
 const attack = () => {
-
+    text.innerText = "The " + monsters[fighting].name + " attacks.";
+    text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
+    health -= monsters[fighting].level;
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+    healthText.innerText = health;
+    monsterHealthText.innerText = monsterHealth;
+    if (health <= 0) {
+        lose();
+    } else if (monsterHealth <= 0) {
+        defeatMonster();
+    }
+}
+function defeatMonster() {
+    gold += Math.floor(monsters[fighting].level * 6.7);
+    xp += monsters[fighting].level;
+    goldText.innerText = gold;
+    xpText.innerText = xp;
+    update(locations[4])
+}
+function lose() {
+    
 }
 const dodge = () => {
-    
+    text.innerText = "You dodge the attack from the " + monsters[fighting].name;
 }
 const goHome= () => {
     update(locations[0])
@@ -125,9 +149,15 @@ const locations = [
     },
     {
         name: "fight",
-        "button text": ["Attack", "Dodge", "Run"],
-        "button functions": [attack, dodge, goHome],
+        buttonText: ["Attack", "Dodge", "Run"],
+        buttonFunction: [attack, dodge, goHome],
         text: "You are fighting a monster."
+    },
+    {
+        name: "kill monster",
+        buttonText: ["Go to town square", "Go to town square", "Go to town square"],
+        buttonFunction: [goTown, goTown, goTown],
+        text: "The monster screams Arg! as it dies. You gain experience points and find gold."
     }
 ]
 const weapons = [
@@ -153,7 +183,7 @@ const monsters = [
       level: 20,
       health: 300
     }
-  ]
+]
 button1.onclick = goToStore
 button2.onclick = goToCave
 button3.onclick = goFight
