@@ -137,6 +137,23 @@ const weapons = [
     { name: 'sword', power: 100 }
 ];
 
+const monsters = [
+    {
+      name: "slime",
+      level: 2,
+      health: 15
+    },
+    {
+      name: "fanged beast",
+      level: 8,
+      health: 60
+    },
+    {
+      name: "dragon",
+      level: 20,
+      health: 300
+    }
+  ]
 button1.onclick = goToStore
 button2.onclick = goToCave
 button3.onclick = goFight
