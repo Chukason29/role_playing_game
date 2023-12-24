@@ -108,7 +108,7 @@ const locations = [
     {
         name: "town square",
         buttonText : ["Go to store", "Go to cave", "Fight dragon"],
-        buttonFunction: [goToStore, goToCave, goFight],
+        buttonFunction: [goToStore, goToCave, fightDragon],
         text: "You enter the store."
     },
     {
@@ -122,6 +122,12 @@ const locations = [
         buttonText : ["fight slime", "fight beast", "go back home"],
         buttonFunction: [fightSlime, fightBeast, goHome],
         text: "The cave is dangerous"
+    },
+    {
+        name: "fight",
+        "button text": ["Attack", "Dodge", "Run"],
+        "button functions": [attack, dodge, goHome],
+        text: "You are fighting a monster."
     }
 ]
 const weapons = [
