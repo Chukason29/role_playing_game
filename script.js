@@ -1,7 +1,7 @@
 "use strict";
 let xp = 0
-let health = 100
-let gold = 50
+let health = 5
+let gold = 100
 let currentWeapon = 0
 let fighting;
 let monsterHealth;
@@ -18,7 +18,29 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth")
 
-function weaponFunc(){
+
+const goToStore = () => {
+    update(locations[1])
+}
+const goToCave = () => {
+    update(locations[2])
+}
+const goFight = () => {
+    console.log("go to fight");
+}
+
+const buyHealth = () => {
+    if (gold >= 10){
+        gold -= 10
+        health += 10
+        document.querySelector("#goldText").innerText = gold
+        document.querySelector("#healthText").innerText = health
+    }else{
+        text.innerText = "You dont have enough money to buy"
+    }
+    
+}
+function buyWeapon(){
     if (currentWeapon < weapons.length - 1) {
         if (gold >= 30) {
           gold -= 30;
@@ -47,36 +69,6 @@ const sellWeapon = () => {
       }else{
         text.innerText = "Don't sell your only weapon!"
       }
-}
-const goToStore = () => {
-    update(locations[1])
-}
-const goToCave = () => {
-    update(locations[2])
-}
-const goFight = () => {
-    console.log("go to fight");
-}
-const buyWeapon = () => {
-    if(gold >= 30){
-        gold -= 30
-        currentWeapon = 1
-        let newWeapon = weapons[currentWeapon].name;
-        goldText.innerText = gold
-        text.innerText = `You now have a ${newWeapon}.`
-
-    }
-}
-const buyHealth = () => {
-    if (gold >= 10){
-        gold -= 10
-        health += 10
-        document.querySelector("#goldText").innerText = gold
-        document.querySelector("#healthText").innerText = health
-    }else{
-        text.innerText = "You dont have enough money to buy"
-    }
-    
 }
 
 const fightSlime = () => {
