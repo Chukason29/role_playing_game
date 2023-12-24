@@ -25,9 +25,7 @@ const goToStore = () => {
 const goToCave = () => {
     update(locations[2])
 }
-const goFight = () => {
-    console.log("go to fight");
-}
+
 
 const buyHealth = () => {
     if (gold >= 10){
@@ -70,12 +68,26 @@ const sellWeapon = () => {
         text.innerText = "Don't sell your only weapon!"
       }
 }
-
+const goFight = () => {
+    console.log("go to fight");
+}
 const fightSlime = () => {
-    console.log("fight Slime");
+    fighting = 0
+    goFight()
 }
 const fightBeast = () => {
-    console.log("fight Beast");
+    fighting = 1
+    goFight()
+}
+const fightDragon = () => {
+    fighting = 2
+    goFight()
+}
+const attack = () => {
+
+}
+const dodge = () => {
+    
 }
 const goHome= () => {
     update(locations[0])
