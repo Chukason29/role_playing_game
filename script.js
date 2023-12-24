@@ -156,7 +156,7 @@ const locations = [
     {
         name: "kill monster",
         buttonText: ["Go to town square", "Go to town square", "Go to town square"],
-        buttonFunction: [goTown, goTown, goTown],
+        buttonFunction: [goHome, goHome, goHome],
         text: "The monster screams Arg! as it dies. You gain experience points and find gold."
     }
 ]
