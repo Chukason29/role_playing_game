@@ -131,6 +131,9 @@ function defeatMonster() {
     xpText.innerText = xp;
     update(locations[4])
 }
+function isMonsterHit(){
+    return Math.random() > .2 ? true : false
+}
 function lose() {
     update(locations[5])
 }
