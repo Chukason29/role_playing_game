@@ -110,6 +110,7 @@ function goFight(n) {
 function attack() {
     text.innerText = "The " + monsters[fighting].name + " attacks.";
     text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
+    
     health -= getMonsterAttackValue(monsters[fighting].level);
     if(isMonsterHit()){
         monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
@@ -123,7 +124,11 @@ function attack() {
     } else if (monsterHealth <= 0) {
       fighting === 2 ? winGame() : defeatMonster();
     }
-  }
+    if(Math.random() <= .1 && inventory.length !== 1){
+        text.innerText += " Your "+ inventory.pop() + " breaks."
+        currentWeapon--
+    }
+}
 function defeatMonster() {
     gold += Math.floor(monsters[fighting].level * 6.7);
     xp += monsters[fighting].level;
@@ -134,6 +139,9 @@ function defeatMonster() {
 function isMonsterHit() {
     return Math.random() > .2 || health < 20;
 }
+function easterEgg(){
+    update(locations[7])
+}
 function lose() {
     update(locations[5])
 }
@@ -142,6 +150,9 @@ const dodge = () => {
 }
 const goHome= () => {
     update(locations[0])
+}
+function pick(guess){
+
 }
 const update = (location) => {
     //destructuring objects
