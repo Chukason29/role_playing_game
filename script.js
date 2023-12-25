@@ -18,6 +18,23 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth")
 
+const monsters = [
+    {
+      name: "slime",
+      level: 2,
+      health: 15
+    },
+    {
+      name: "fanged beast",
+      level: 8,
+      health: 60
+    },
+    {
+      name: "dragon",
+      level: 20,
+      health: 300
+    }
+]
 
 const goToStore = () => {
     update(locations[1])
@@ -55,7 +72,7 @@ function buyWeapon(){
         text.innerText = "You already have the most powerful weapon!";
         button2.innerText = "Sell weapon for 15 gold";
         button2.onclick = sellWeapon;
-      }
+    }
 }
 const sellWeapon = () => {
     if (inventory.length > 1) {
@@ -68,13 +85,8 @@ const sellWeapon = () => {
         text.innerText = "Don't sell your only weapon!"
       }
 }
-const goFight = () => {
-    update(locations[3]);
-    monsterHealth = monsters[fighting].health;
-    monsterStats.style.display = "block";
-    monsterName.innerText = monsters[fighting].name;
-    monsterHealthText.innerText = monsterHealth;
-}
+
+
 const fightSlime = () => {
     fighting = 0
     goFight()
@@ -83,23 +95,19 @@ const fightBeast = () => {
     fighting = 1
     goFight()
 }
-const fightDragon = () => {
+function fightDragon (){
     fighting = 2
-    goFight()
+    goFight(2)
 }
-const attack = () => {
-    text.innerText = "The " + monsters[fighting].name + " attacks.";
-    text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
-    health -= monsters[fighting].level;
-    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
-    healthText.innerText = health;
+
+function goFight(n) {
+    update(locations[3]);
+    monsterHealth = monsters[n].health;
+    monsterStats.style.display = "block";
+    monsterName.innerText = monsters[n].name;
     monsterHealthText.innerText = monsterHealth;
-    if (health <= 0) {
-        lose();
-    } else if (monsterHealth <= 0) {
-        defeatMonster();
-    }
 }
+
 function defeatMonster() {
     gold += Math.floor(monsters[fighting].level * 6.7);
     xp += monsters[fighting].level;
@@ -108,7 +116,7 @@ function defeatMonster() {
     update(locations[4])
 }
 function lose() {
-    
+    update(locations[5])
 }
 const dodge = () => {
     text.innerText = "You dodge the attack from the " + monsters[fighting].name;
@@ -119,7 +127,7 @@ const goHome= () => {
 const update = (location) => {
     //destructuring objects
     const {name, buttonText, buttonFunction, text: finalText} = location;
-
+    monsterStats.style.display = "none"
     button1.innerText = buttonText[0]
     button2.innerText = buttonText[1]
     button3.innerText = buttonText[2]
@@ -128,6 +136,14 @@ const update = (location) => {
     button3.onclick = buttonFunction[2]
     text.innerText = finalText
 }
+
+const weapons = [
+    { name: 'stick', power: 5 },
+    { name: 'dagger', power: 30 },
+    { name: 'claw hammer', power: 50 },
+    { name: 'sword', power: 100 }
+];
+
 const locations = [
     {
         name: "town square",
@@ -158,32 +174,21 @@ const locations = [
         buttonText: ["Go to town square", "Go to town square", "Go to town square"],
         buttonFunction: [goHome, goHome, goHome],
         text: "The monster screams Arg! as it dies. You gain experience points and find gold."
-    }
-]
-const weapons = [
-    { name: 'stick', power: 5 },
-    { name: 'dagger', power: 30 },
-    { name: 'claw hammer', power: 50 },
-    { name: 'sword', power: 100 }
-];
-
-const monsters = [
-    {
-      name: "slime",
-      level: 2,
-      health: 15
     },
     {
-      name: "fanged beast",
-      level: 8,
-      health: 60
+        name: "lose",
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+        "button functions": [restart, restart, restart],
+        text: "You die. ☠️"
     },
-    {
-      name: "dragon",
-      level: 20,
-      health: 300
+    { 
+        name: "win", 
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"], 
+        "button functions": [restart, restart, restart], 
+        text: "You defeat the dragon! YOU WIN THE GAME! 🎉" 
     }
 ]
+//console.log(goFight(0));
 button1.onclick = goToStore
 button2.onclick = goToCave
 button3.onclick = goFight
