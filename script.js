@@ -151,8 +151,13 @@ const dodge = () => {
 const goHome= () => {
     update(locations[0])
 }
-function pick(guess){
-
+function pick(guess) {
+    let numbers = [];
+    while (numbers.length < 10) {
+      numbers.push(Math.floor(Math.random() * 11));
+    }
+    text.innerText = "You picked "+guess+". Here are the random numbers:"
+  
 }
 function pickTwo(){
     pick(2)
